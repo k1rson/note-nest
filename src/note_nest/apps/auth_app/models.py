@@ -1,10 +1,12 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-# Create your models here.
-class User(models.Model):
-    username = models.CharField(max_length=128)
+class CustomUser(AbstractUser):
+    avatar = models.ImageField(upload_to='avatars/', blank=True, null=True, verbose_name='Аватар пользователя')
 
-    class Meta:
-        db_table = ''
-        verbose_name = 'Ff'
-        verbose_name_plural = 'ff'
+    def __str__(self):
+        return f'{self.username}'
+    
+    class Meta: 
+        verbose_name = 'Пользователь'
+        verbose_name_plural = 'Пользователи'

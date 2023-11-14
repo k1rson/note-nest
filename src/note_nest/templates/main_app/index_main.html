@@ -1,0 +1,15 @@
+{% extends "main_app/base/base_main.html" %}
+
+{% load static %}
+
+{% block title %}Главная страница - NoteNest{% endblock title %}
+
+{% block content %}
+{% csrf_token %}
+
+
+{% endblock content %}
+
+{% block scripts %}
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock scripts %}

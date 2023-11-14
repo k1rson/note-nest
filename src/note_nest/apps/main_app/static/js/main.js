@@ -1,0 +1,2 @@
+// delimiters: ['[[', ']]'] - for django
+

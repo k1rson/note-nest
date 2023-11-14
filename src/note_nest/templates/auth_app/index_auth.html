@@ -1,0 +1,18 @@
+{% extends "auth_app/base/base_auth.html" %}
+
+{% load static %}
+
+{% block title %}Главная страница - NoteNest{% endblock title %}
+
+{% block content %}
+{% csrf_token %}
+
+Write. Read. Remember
+
+<button class="btn btn-outline-danger" onclick="check_login('f')"> Get Data </button>
+
+{% endblock content %}
+
+{% block scripts %}
+<script src="{% static 'js/auth.js' %}"></script>
+{% endblock scripts %}
