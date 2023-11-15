@@ -4,15 +4,82 @@
 
 {% block title %}Главная страница - NoteNest{% endblock title %}
 
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/auth.css' %}">
+{% endblock css %}
+
 {% block content %}
 {% csrf_token %}
 
-Write. Read. Remember
+<section class="vh-100">
+    <div class="container-fluid h-custom">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <!-- logo -->
+        <div class="col-md-9 col-lg-6 col-xl-4">
+            <img src="{% static 'image/svg/logo-none-text.svg' %}" class="logo">
+        </div>
 
-<button class="btn btn-outline-danger" onclick="check_login('f')"> Get Data </button>
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+            <div class="divider d-flex align-items-center my-4">
+                <p class="text-center fw-bold mx-3 mb-0">Авторизуйтесь через</p>
+            </div>
+
+            <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-center">
+                  <a href="#"><img src="{% static 'image/svg/icon-vk.svg' %}" width="35px"
+                    data-bs-toggle="tooltip" data-bs-placement="top" title="Платформа ВКонтакте">
+                 </a>
+                 <a href="#"><img src="{% static 'image/svg/icon-tg.svg' %}" width="35px"
+                    data-bs-toggle="tooltip" data-bs-placement="top" title="Платформа Telegram">
+                 </a>
+            </div>
+
+            <div class="divider d-flex align-items-center my-4">
+                <p class="text-center fw-bold mx-3 mb-0">Или</p>
+            </div>
+
+            {% verbatim %}
+            <div id="app">
+            </div>
+            {% endverbatim %}
+            
+            <!-- Login input -->
+            <div class="form-outline mb-4">
+              <input id="login-input" class="form-control form-control-lg" placeholder="Ваш логин"/>
+              <label class="form-label">Ваш логин</label>
+            </div>
+  
+            <!-- Password input -->
+            <div class="form-outline mb-3">
+              <input type="password" id="password-input" class="form-control form-control-lg" placeholder="Ваш пароль" />
+              <label class="form-label">Ваш пароль</label>
+            </div>
+  
+            <div class="d-flex justify-content-between align-items-center">
+              <!-- Checkbox -->
+              <div class="form-check mb-0">
+                <input class="form-check-input me-2" type="checkbox" value=""/>
+                <label class="form-check-label">
+                  Запомнить меня
+                </label>
+              </div>
+              <a href="#!" class="text-body">Забыли пароль?</a>
+            </div>
+  
+            <div class="text-center mt-4 pt-2">
+              <button type="button" class="btn btn-outline-success btn"
+                style="padding-left: 2.5rem; padding-right: 2.5rem;">Авторизоваться</button>
+              <p class="small fw-bold mt-2 pt-1 mb-0">Нет аккаунта? <a href="#!"
+                  class="link-danger">Зарегистрироваться</a></p>
+            </div>
+
+            
+        </div>
+      </div>
+    </div>
+  </section>
 
 {% endblock content %}
 
 {% block scripts %}
-<script src="{% static 'js/auth.js' %}"></script>
+<script src="{% static 'js/auth_vue.js' %}"></script>
 {% endblock scripts %}

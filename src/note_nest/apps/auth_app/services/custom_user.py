@@ -1,8 +1,12 @@
+import json
+
 from typing import Optional
+
 
 from ..models import CustomUser
 
 class CustomUserService:
+    @staticmethod
     def get_object_user(attribute: str, value: str) -> Optional[CustomUser]:
         """
         Проверяет существование пользователя по указанному атрибуту.
@@ -27,4 +31,3 @@ class CustomUserService:
             return None
         except CustomUser.MultipleObjectsReturned:
             return None
-

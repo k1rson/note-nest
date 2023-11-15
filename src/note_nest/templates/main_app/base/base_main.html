@@ -35,13 +35,14 @@
     <!-- ========== Bootstrap & JQuery|Ajax|Vue.js ========== -->
     <script src="{% static 'js/bootstrap/jquery.min.js' %}"></script>
     <script src="{% static 'js/bootstrap/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'js/vue.js' %}"></script>
     <script src="{% static 'js/utils.js' %}"></script>
-    {% block scripts %}{% endblock scripts %}
-
+    <script src="{% static 'js/vue.global.js' %}"></script>
+    
     <script>
-        var success_icon = "{% static 'image/svg/icon-success.svg' %}";
-        var warning_icon = "{% static 'image/svg/icon-success.svg' %}";
-        var error_icon = "{% static 'image/svg/icon-error.svg' %}";
+      var success_icon = "{% static 'image/svg/icon-success.svg' %}";
+      var warning_icon = "{% static 'image/svg/icon-success.svg' %}";
+      var error_icon = "{% static 'image/svg/icon-error.svg' %}";
     </script>
+
+    {% block script %}{% endblock script %}
 </body>

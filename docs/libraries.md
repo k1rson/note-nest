@@ -1,7 +1,7 @@
 <strong>Installed libraries:</strong>
 1. Django -> 4.2.7 (latest available)
 2. Pillow -> 10.1.0 (latest available)
-3. psycopg2 (Linux: psycopg2-binary) -> 2.9.9 (latest available)
+3. psycopg2 -> 2.9.9 (latest available)
 
 ----------------------------------------------------------------
 

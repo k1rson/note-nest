@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}">
 
     <!-- ========== Custom ========== -->
+    {% block css %}{% endblock css %}
 
     <link rel="icon" href="{% static 'image/ico/icon-logo.ico' %}" type="image/x-icon">
 
@@ -35,7 +36,7 @@
     <!-- ========== Bootstrap & JQuery|Ajax|Vue.js ========== -->
     <script src="{% static 'js/bootstrap/jquery.min.js' %}"></script>
     <script src="{% static 'js/bootstrap/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'js/vue.js' %}"></script>
+    <script src="{% static 'js/vue.global.js' %}"></script>
     <script src="{% static 'js/utils.js' %}"></script>
     {% block scripts %}{% endblock scripts %}
 
