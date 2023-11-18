@@ -31,3 +31,18 @@ class CustomUserService:
             return None
         except CustomUser.MultipleObjectsReturned:
             return None
+    
+    def check_correct_password(username: str, entered_password: str) -> bool:
+        """
+        Проверяет, соответствует ли введенный пользователем пароль учетной записи.
+
+        :param user: Введенный пользователем username
+        :param entered_password: Введенный пользователем пароль для проверки.
+        :return: Объект CustomUser, если пароль корректен, в противном случае None.
+        """
+        user = CustomUser.objects.get(username=username)
+        
+        if user.check_password(entered_password):
+            return user
+        else:
+            return None

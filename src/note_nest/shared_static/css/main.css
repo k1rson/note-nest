@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner&family=Open+Sans:wght@300&display=swap');
+
+* {
+    font-family: 'Edu TAS Beginner', cursive;
+    font-family: 'Open Sans', sans-serif;
+}
+
+img {
+    max-width: 100%;
+}
+
+input::placeholder {
+    text-align: center;
+} 

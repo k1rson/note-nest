@@ -4,28 +4,16 @@
 
 {% block title %}Главная страница - NoteNest{% endblock title %}
 
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/main_app.css' %}">
+{% endblock css %}
+
+
 {% block content %}
 {% csrf_token %}
 
 {% verbatim %}
 
-<div id="app_likes_dislikes">
-    <ul>
-        <li v-for="user in user_list" :key="user.username">
-        <div class="row-cols-auto justify-content-center align-items-center g-2">
-            <div class="col">
-                <strong>Имя пользователя:</strong> {{ user.username }}
-            </div>
-            <div class="col">
-                <strong>Пароль пользователя:</strong> {{ user.password }}
-            </div>
-            <div class="col">
-                <strong>Последний раз был в сети:</strong> {{ user.last_login }}
-            </div>
-        </div>
-        </li>
-    </ul>
-</div>
 
 {% endverbatim %}
 
