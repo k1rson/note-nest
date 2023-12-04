@@ -4,9 +4,13 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.AuthPageView.as_view(), name='auth_page'),
+    path('login/', views.AuthLoginPageView.as_view(), name='login'),
+    path('registr/', views.AuthRegistrPageView.as_view(), name='registr'),
+    
+    path('login/auth_email/', views.AuthEmailPageView.as_view(), name='auth_email_page'),
+    path('login/auth_tg/', views.AuthTelegramPageView.as_view(), name='auth_telegram_page'),
 
-    # urls for fetch api
-    path('check_login/<str:username>', views.check_login, name='check_login'),
-    path('check_password/', views.check_password, name='check_password'),
+    # fetch api - endpoints
+    path('login/auth_user/', views.auth_user, name='check_login'),
+    path('login/auth_email/get_encrypted_email/', views.get_encrypted_email, name='get_encypted_email'),
 ]

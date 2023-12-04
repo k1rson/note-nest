@@ -1,7 +1,7 @@
-import json
-
 from typing import Optional
 
+from django.http import HttpRequest
+from django.contrib.auth import authenticate, login
 
 from ..models import CustomUser
 
@@ -32,17 +32,68 @@ class CustomUserService:
         except CustomUser.MultipleObjectsReturned:
             return None
     
-    def check_correct_password(username: str, entered_password: str) -> bool:
+    @staticmethod
+    def is_correct_password(user: CustomUser, entered_password: str) -> bool:
         """
         Проверяет, соответствует ли введенный пользователем пароль учетной записи.
 
-        :param user: Введенный пользователем username
+        :param user: Объект пользователя
         :param entered_password: Введенный пользователем пароль для проверки.
-        :return: Объект CustomUser, если пароль корректен, в противном случае None.
+        :return: Тип bool, характеризующее статус проверки пароля
         """
-        user = CustomUser.objects.get(username=username)
-        
         if user.check_password(entered_password):
             return user
         else:
-            return None
+            return False
+
+    @staticmethod
+    def authorize_user_in_system(request: HttpRequest, user: CustomUser) -> bool: 
+        """
+        Авторизовывает пользователя в системе.
+
+        :param request: Объект запроса
+        :param user: Объект пользователя
+        :return: Тип bool, характеризующее статус авторизации
+        """
+        try: 
+            authenticate(request)
+            login(request, user)
+            
+            return True
+        except: 
+            return False
+
+    @staticmethod
+    def get_email_confirmation_flag(user: CustomUser) -> bool:
+        """
+        Возвращает флаг, указывающий, подключенна ли доп. аутентификация через email
+
+        :param user: Объект пользователя
+        :return: Тип bool, указывающий, подключена ли доп. аутентификация через email
+        """
+        return user.is_enabled_email_auth
+
+    @staticmethod
+    def get_telegram_confirmation_flag(user: CustomUser) -> bool:
+        """
+        Возвращает флаг, указывающий, подключенна ли доп. аутентификация через telegram бота
+
+        :param user: Объект пользователя
+        :return: Тип bool, указывающий, подключена ли доп. аутентификация через telegram бота
+        """
+        return user.is_enabled_telegram_auth
+
+    @staticmethod
+    def get_encypted_email(user: CustomUser) -> str: 
+        """
+        Возвращает строку с зашифрованной почтой в виде (a***n@bk.ru)
+
+        :param user: Объект пользователя
+        :return: Строка, содержащая зашифрованную почту
+        """
+        email = user.email
+        
+        username, domain = email.split('@')
+        encrypted_username = username[0] + '*' * (len(username) - 2) + username[-1]
+        
+        return f"{encrypted_username}@{domain}"

@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %}Главная страница - NoteNest{% endblock title %}
+{% block title %}Авторизация - NoteNest{% endblock title %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/auth_app.css' %}">
@@ -11,7 +11,7 @@
 {% block content %}
 {% csrf_token %}
 
-<section class="h-100 gradient-form" style="background-color: #eee;">
+<section class="h-100 gradient-form fade-in" style="background-color: #eee;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-xl-10">
@@ -23,30 +23,33 @@
                 <div class="text-center mb-4">
                   <img src="{% static 'image/svg/logo.svg' %}" style="width: 185px;" alt="logo">
                 </div>
-
+                
                 <div id="auth_app">
-                  <div class="form-outline mb-4">
-                    <label class="form-label small">Ваш логин или почта</label>
-                    <input v-model="login" @change="check_login" class="form-control" placeholder="Введите Ваш логин"/>
-                  </div>
+                  <div v-if="!loading">
+                    <div class="form-outline mb-4">
+                      <label class="form-label small">Ваш логин или почта</label>
+                      <input v-model="login" class="form-control" placeholder="Введите Ваш логин"/>
+                    </div>
 
-                  <div class="form-outline mb-2">
-                    <label class="form-label small">Ваш пароль</label>
-                    <input v-model="password" @change="check_password" type="password" class="form-control" placeholder="Введите Ваш пароль">
-                  </div>
+                    <div class="form-outline mb-3">
+                      <label class="form-label small">Ваш пароль</label>
+                      <input v-model="password" type="password" class="form-control" placeholder="Введите Ваш пароль">
+                    </div>
 
-                  <div class="text-center pt-1 mb-3 pb-1">
-                    <button class="btn btn-secondary gradient-custom-2 mb-3" :disabled="is_disabled_button">Авторизоваться</button>
-                    <hr>
-                    <a class="text-muted" href="#!">Забыли пароль?</a>
+                    <div class="text-center pt-1 mb-3 pb-1">
+                      <button @click="auth_user" class="btn btn-secondary gradient-custom-2 mb-3">Авторизоваться</button>
+                      <hr>
+                      <a class="text-muted" href="#!">Забыли пароль?</a>
+                    </div>
                   </div>
-                </div>
-
+                  <div v-else class="row justify-content-center align-items-center mb-4 fade-in">
+                      <span class="loader"></span>
+                  </div>
                   <div class="d-flex align-items-center justify-content-center">
                     <p class="mb-0 me-2">Нет учетной записи?</p>
-                    <a href="!#" class="text-danger">Зарегистрироваться</a>
+                    <a href="{% url 'registr' %}" class="text-danger">Зарегистрироваться</a>
                   </div>
-
+                </div>
               </div>
             </div>
             <div class="col-lg-6 d-flex align-items-center gradient-custom-2 text-center">

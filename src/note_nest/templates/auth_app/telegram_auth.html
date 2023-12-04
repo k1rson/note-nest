@@ -1,0 +1,61 @@
+{% extends "auth_app/base/base_auth.html" %}
+
+{% load static %}
+
+{% block title %}Подтверждение по коду - NoteNest{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/auth_app.css' %}">
+{% endblock css %}
+
+{% block content %}
+
+<section class="h-100 gradient-form" style="background-color: #eee;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-xl-4">
+          <div class="card rounded-3 text-black">
+            <div class="row g-0">
+              <div class="col-lg-12">
+                <div class="card-body p-md-5 mx-md-4">
+                  <div class="text-center mb-4">
+                    <img src="{% static 'image/svg/logo.svg' %}" style="width: 185px;" alt="logo">
+                  </div>
+
+                  {% verbatim %}
+                  <div id="">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10 text-center">
+                          <p class="fw-bold">Здравствуйте, {{ username }}</p>
+                          <p class="fw-bold">Письмо отправленно на {{ encypted_email }}</p>
+                        </div>
+    
+                        <div class="row justify-content-center">
+                          <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10 text-center">
+                            <div class="mb-3">
+                              <div class="d-flex justify-content-between">
+                                <input type="text" class="form-control otp-input me-2" maxlength="1" pattern="\d" id="otp-input-1" oninput="handle_input_otp(this)" required>
+                                <input type="text" class="form-control otp-input me-2" maxlength="1" pattern="\d" id="otp-input-2" oninput="handle_input_otp(this)" required>
+                                <input type="text" class="form-control otp-input me-2" maxlength="1" pattern="\d" id="otp-input-3" oninput="handle_input_otp(this)" required>
+                                <input type="text" class="form-control otp-input me-2" maxlength="1" pattern="\d" id="otp-input-4" oninput="handle_input_otp(this)" required>
+                              </div>
+                              <div class="form-text text-center">Введите 4-значный одноразовый пароль.</div>
+                            </div>
+                            <button type="button" class="custom-outline-purple-btn">Подтвердить</button>
+                        </div>
+                  </div>
+                  {% endverbatim %}
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock content %}
+
+{% block scripts %}
+{% endblock scripts %}

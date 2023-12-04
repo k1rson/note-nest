@@ -1,0 +1,60 @@
+{% extends "auth_app/base/base_auth.html" %}
+
+{% load static %}
+
+{% block title %}Подтверждение по коду - NoteNest{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/auth_app.css' %}">
+{% endblock css %}
+
+{% block content %}
+
+<section class="h-100 gradient-form fade-in" style="background-color: #eee;">
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-md-8 col-lg-6 col-xl-4">
+        <div class="card rounded-3 text-black">
+          <div class="card-body p-md-5">
+            <div class="text-center mb-4">
+              <img src="{% static 'image/svg/logo.svg' %}" class="img-fluid" alt="logo" style="max-width: 185px;">
+            </div>
+
+            {% verbatim %}
+            <div id="auth_email_app">
+              <div class="row justify-content-center">
+                <div class="col-12 col-md-10 text-center">
+                  <p class="fw-bold">Здравствуйте, {{ username }}</p>
+                  <p class="fw-bold">Письмо отправлено на {{ encrypted_email }}</p>
+                </div>
+              </div>
+
+              <div class="row justify-content-center">
+                <div class="col-12 col-md-10 text-center">
+                  <div class="mb-3">
+                    <div class="d-flex justify-content-between">
+                      <input type="text" class="form-control otp-input me-2" maxlength="1" pattern="\d" id="otp-input-1" oninput="handle_input_otp(this)" required>
+                      <input type="text" class="form-control otp-input me-2" maxlength="1" pattern="\d" id="otp-input-2" oninput="handle_input_otp(this)" required>
+                      <input type="text" class="form-control otp-input me-2" maxlength="1" pattern="\d" id="otp-input-3" oninput="handle_input_otp(this)" required>
+                      <input type="text" class="form-control otp-input me-2" maxlength="1" pattern="\d" id="otp-input-4" oninput="handle_input_otp(this)" required>
+                    </div>
+                    <div class="form-text text-center">Введите 4-значный одноразовый пароль.</div>
+                  </div>
+                  <button type="button" class="btn custom-outline-purple-btn">Подтвердить</button>
+                </div>
+              </div>
+            </div>
+            {% endverbatim %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}
+
+{% block scripts %}
+<script src="{% static 'js/auth_email_vue.js' %}"></script>
+{% endblock scripts %}
